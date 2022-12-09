@@ -1,5 +1,6 @@
 const GQL_SERVER_URL = 'http://localhost:4000/';
-
+const MAX_SELECTED_MOVIES = 20;
 export {
-    GQL_SERVER_URL
+    GQL_SERVER_URL,
+    MAX_SELECTED_MOVIES
 }
