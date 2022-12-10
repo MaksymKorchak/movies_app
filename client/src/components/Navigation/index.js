@@ -61,7 +61,7 @@ const Navigation = () => {
               component="div"
               sx={{ color: "white", flexGrow: 1 }}
             >
-              Movies Recommendationx
+              Movies Recommendations
             </Typography>
           </Link>
           <Box sx={{ display: { xs: "none", lg: "flex" } }}>

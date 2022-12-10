@@ -16,6 +16,7 @@ class Movie {
         this.voteCount = movie.vote_count;
         this.video = movie.video;
         this.voteAverage = movie.vote_average;
+        this.runtime = movie.runtime;
     }
 
     releaseDate(params){
