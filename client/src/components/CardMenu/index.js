@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import Menu from '@mui/material/Menu';
+import  {Menu, IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import IconButton from '@mui/material/IconButton';
 
 const CardMenu = ({ children }) => {
     const [anchorEl, setAnchorEl] = useState(null);

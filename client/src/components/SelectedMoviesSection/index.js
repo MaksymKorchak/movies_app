@@ -1,4 +1,5 @@
-import { MovieCardSelected, SelectedMoviesForm } from "../../components";
+import { useState } from 'react';
+import { MovieCardSelected, SelectedMoviesForm, ConfirmModal } from "../../components";
 import noMoviesImgSrc from "../../assests/images/no_movies.png";
 import { Box, Paper, Typography, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -30,6 +31,19 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
   }));
 
 const SelectedMoviesSection = ({ selectedMovies, deleteMovie }) => {
+    const [listName, setListName] = useState('');
+    const [link, setLink] = useState('');
+
+    const onSubmit = ({ listName }) => {
+        const ids = selectedMovies.map(({ id }) => id);
+        const link = `${window.location.host}/recommend?title=${listName}&ids=${ids.join()}`;
+        setListName(listName);
+        setLink(link);
+    };
+
+    const onCloseConfirmModal = () => {
+        setLink('');
+    }
 
     if(!selectedMovies.length) {
         return (
@@ -61,8 +75,13 @@ const SelectedMoviesSection = ({ selectedMovies, deleteMovie }) => {
                 ))}
             </MoviesList>
             <Box pt={2}>
-                <SelectedMoviesForm/>
+                <SelectedMoviesForm onSubmit={onSubmit}/>
             </Box>
+            <ConfirmModal
+                url={link} 
+                title={listName}
+                open={!!link}
+                onClose = {onCloseConfirmModal}/>
         </SelectedMovies>
     )
 }

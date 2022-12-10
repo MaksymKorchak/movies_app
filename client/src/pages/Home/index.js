@@ -38,8 +38,8 @@ const Home = () => {
                   <Stack sx={{ margin: "auto", py: 4}}>
                     <Pagination
                       count={pagesCount}
-					  page = {page}
-					  size="small"
+                      page = {page}
+                      size="small"
                       onChange={handlePagination}
                       color="primary"
                     />
