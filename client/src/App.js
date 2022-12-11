@@ -1,20 +1,45 @@
+import { useContext } from "react";
 import { CssBaseline, Container, Box } from "@mui/material";
 import { Navigation } from "./components";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Home, Settings, Recommend } from "./pages";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { GQL_SERVER_URL } from "./config";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  from,
+  ApolloLink,
+} from "@apollo/client";
+import { AppContext } from "./providers/context";
+import I18nProvider from "./providers/i18n";
 
 const App = () => {
+  const { state } = useContext(AppContext);
+  const httpLink = new HttpLink({ uri: "http://localhost:4000/" });
+  const localeMiddleware = new ApolloLink((operation, forward) => {
+    const customHeaders = operation.getContext().hasOwnProperty("headers")
+      ? operation.getContext().headers
+      : {};
+
+    operation.setContext({
+      headers: {
+        ...customHeaders,
+        locale: state.locale,
+      },
+    });
+    return forward(operation);
+  });
+
   const client = new ApolloClient({
-    uri: GQL_SERVER_URL,
+    link: from([localeMiddleware, httpLink]),
     cache: new InMemoryCache(),
-	connectToDevTools: true
+    connectToDevTools: true,
   });
 
   return (
-    <ApolloProvider client={client}>
-      <BrowserRouter>
+    <I18nProvider locale = {state.locale}>
+      <ApolloProvider client={client}>
         <CssBaseline />
         <Navigation />
         <Box sx={{ backgroundColor: (theme) => theme.palette.grey[100] }}>
@@ -26,8 +51,8 @@ const App = () => {
             </Routes>
           </Container>
         </Box>
-      </BrowserRouter>
-    </ApolloProvider>
+      </ApolloProvider>
+    </I18nProvider>
   );
 };
 

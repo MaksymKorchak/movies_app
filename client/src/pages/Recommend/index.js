@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { Typography, Grid } from "@mui/material";
 import { MOVIES_BY_IDS_QUERY } from "./queries";
 import { MovieCard } from "../../components";
+import { FormattedMessage } from "react-intl";
 
 const Recommend = () => {
   const [searchParams] = useSearchParams();
@@ -25,7 +26,9 @@ const Recommend = () => {
   }, [searchParams]);
 
   if (loading) {
-    <div>Loading...</div>;
+    <div>
+      <FormattedMessage id="loading"/>
+    </div>;
   }
 
   if (error) {

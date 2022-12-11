@@ -3,6 +3,7 @@ import { MovieCardSelected, SelectedMoviesForm, ConfirmModal } from "../../compo
 import noMoviesImgSrc from "../../assests/images/no_movies.png";
 import { Box, Paper, Typography, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { FormattedMessage } from 'react-intl';
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -56,7 +57,7 @@ const SelectedMoviesSection = ({ selectedMovies, deleteMovie }) => {
                         src={noMoviesImgSrc}
                     />
                    <Typography variant="h5" mt={2}>
-                        No movies selected yet...
+                        <FormattedMessage id="no_movies_selected"/>
                    </Typography>
                 </NoMovies>
             </SelectedMovies>

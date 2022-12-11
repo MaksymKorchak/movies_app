@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useCallback } from "react";
 import {
   AppBar,
   Box,
@@ -18,20 +18,36 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Link as RouterLink } from "react-router-dom";
+import { LOCALES } from "../../constants";
+import { AppContext } from "../../providers/context";
+import { FormattedMessage } from "react-intl";
 
 const Navigation = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const { state, dispatch } = useContext(AppContext);
+
+  const setLanguage = useCallback((locale) => {
+	  dispatch({
+		  type: 'setLocale',
+		  locale
+	  })
+  }, []);
 
   const list = () => (
     <Box sx={{ width: 250 }} role="presentation">
       <List>
-        <Link component={RouterLink} to="settings" sx={{color: "inherit"}} underline="none">
+        <Link
+          component={RouterLink}
+          to="settings"
+          sx={{ color: "inherit" }}
+          underline="none"
+        >
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <SettingsIcon />
               </ListItemIcon>
-              <ListItemText primary="Settings" />
+              <FormattedMessage id="navigation.settings"/>
             </ListItemButton>
           </ListItem>
         </Link>
@@ -42,7 +58,7 @@ const Navigation = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{display: 'flex', flexWrap: 'wrap'}}>
           <Hidden only={["lg", "xl"]}>
             <IconButton
               size="large"
@@ -61,16 +77,28 @@ const Navigation = () => {
               component="div"
               sx={{ color: "white", flexGrow: 1 }}
             >
-              Movies Recommendations
+            	<FormattedMessage id="navigation.home"/>
             </Typography>
           </Link>
-          <Box sx={{ display: { xs: "none", lg: "flex" } }}>
+          <Box sx={{display: 'flex', gap: 1}}>
             <Button
+			  variant="contained"
+              sx={{ my: 2, color: "white" }}
+              onClick={() => setLanguage(LOCALES.ENGLISH)}>
+             🏴󠁧󠁢󠁥󠁮󠁧󠁿 EN
+            </Button>
+            <Button
+			  variant="contained"
+              sx={{ my: 2, color: "white" }}
+              onClick={() => setLanguage(LOCALES.UKRAINIAN)}>
+             🇺🇦 UA
+            </Button>
+            <Button
+			  variant="contained"
               component={RouterLink}
               to="settings"
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Settings
+              sx={{ my: 2, color: "white", display: { xs: "none", lg: "flex" } }}>
+              <FormattedMessage id="navigation.settings"/>
             </Button>
           </Box>
         </Toolbar>
@@ -78,8 +106,7 @@ const Navigation = () => {
       <Drawer
         anchor="left"
         open={isDrawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      >
+        onClose={() => setDrawerOpen(false)}>
         {list()}
       </Drawer>
     </Box>

@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import { useMovies } from ".";
-import { MAX_SELECTED_MOVIES } from "../../config";
+import { MAX_SELECTED_MOVIES } from "../../constants";
 
 describe("useMovies hook", () => {
   const basicMovie = {

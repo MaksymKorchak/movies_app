@@ -4,6 +4,7 @@ import { MovieCard, SelectedMoviesSection } from "../../components";
 import { useQuery } from "@apollo/client";
 import { MOVIES_QUERY } from "./queries";
 import { useMovies } from "../../hooks/useMovies";
+import { FormattedMessage } from "react-intl";
 
 const Home = () => {
   const [page, setPage] = useState(1);
@@ -16,18 +17,18 @@ const Home = () => {
 
   const pagesCount = data?.movies?.totalPages <= 500 ? data?.movies?.totalPages : 500;
 
-  if (error) return "Something went wrong ...Pls reload a page";
+  if (error) return <FormattedMessage id="something_wrong"/>;
 
   return (
     <Box sx={{ flexGrow: 1, marginTop: 2 }}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Paper>Filter section</Paper>
+          <Paper>Filter</Paper>
         </Grid>
         <Grid item xs={12} md={8}>
           <Paper>
             <Box sx={{ padding: 1 }}>
-              {loading && "loading..."}
+              {loading && <FormattedMessage id="loading"/>}
               {data && (
                 <Grid container spacing={2}>
                   {data.movies.results.map((movie) => (

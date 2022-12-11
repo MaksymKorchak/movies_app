@@ -1,9 +1,9 @@
-
+import { FormattedMessage } from "react-intl";
 
 const Settings = () => {
     return (
         <>
-            Settings
+            <FormattedMessage id="navigation.settings"/>
         </>
     )
 };
