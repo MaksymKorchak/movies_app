@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { MovieCardSelected, SelectedMoviesForm, ConfirmModal } from "../../components";
 import noMoviesImgSrc from "../../assests/images/no_movies.png";
 import { Box, Paper, Typography, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { FormattedMessage } from 'react-intl';
+import { AppContext } from '../../providers/context';
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -34,10 +35,11 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
 const SelectedMoviesSection = ({ selectedMovies, deleteMovie }) => {
     const [listName, setListName] = useState('');
     const [link, setLink] = useState('');
+    const { state } = useContext(AppContext);
 
     const onSubmit = ({ listName }) => {
         const ids = selectedMovies.map(({ id }) => id);
-        const link = `${window.location.host}/recommend?title=${listName}&ids=${ids.join()}`;
+        const link = `${window.location.host}/recommend?title=${listName}&locale=${state.locale}&ids=${ids.join()}`;
         setListName(listName);
         setLink(link);
     };
