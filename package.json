@@ -10,5 +10,8 @@
     "install": "cd client && npm install --legacy-peer-deps && cd ../server && npm install"
   },
   "author": "MK",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "16.x"
+  }
 }
