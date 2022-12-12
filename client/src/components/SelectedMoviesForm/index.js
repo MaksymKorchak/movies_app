@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { Form, Field } from "react-final-form";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 const SelectedMoviesForm = ({ onSubmit }) => {
   const intl = useIntl();

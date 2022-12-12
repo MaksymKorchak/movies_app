@@ -37,7 +37,7 @@ const ConfirmModal = ({ open, url, title, onClose }) => {
         if (openAlert){
             timer = setTimeout(() => { setOpenAlert(false) }, 1000)
         }
-        return () => clearTimeout(1000)
+        return () => clearTimeout(timer)
     }, [openAlert])
 
   return (

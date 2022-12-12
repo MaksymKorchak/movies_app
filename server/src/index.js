@@ -1,25 +1,57 @@
-const fs = require('fs');
-const path = require('path');
-const { ApolloServer } = require('apollo-server');
-const Query = require('./resolvers/Query');
+const { ApolloServer } = require("@apollo/server");
+const { expressMiddleware } = require("@apollo/server/express4");
+const { ApolloServerPluginDrainHttpServer } = require("@apollo/server/plugin/drainHttpServer");
+const { json } = require("body-parser");
+const express = require("express");
+const fs = require("fs");
+const http = require("http");
+const path = require("path");
+const cors = require("cors");
+const Query = require("./resolvers/Query");
 
 const resolvers = {
-    Query
+  Query,
 };
 
-const context = ({req, res}) => ({
-    locale: req?.headers?.locale || 'en-US'
-});
+const typeDefs = fs.readFileSync(
+    path.join(__dirname, 'schema.graphql'),
+    'utf8'
+  );
 
-const server = new ApolloServer({
-    typeDefs: fs.readFileSync(
-        path.join(__dirname, 'schema.graphql'),
-        'utf-8'
-    ),
+async function startApolloServer(typeDefs, resolvers) {
+  const app = express();
+  const httpServer = http.createServer(app);
+
+  const server = new ApolloServer({
+    typeDefs,
     resolvers,
-    context
-});
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  });
 
-server
-    .listen()
-    .then(({url}) => console.log(`Server listening on ${url}`))
+  await server.start();
+  
+  app.use(
+    "/graphql",
+    cors(),
+    json(),
+    expressMiddleware(server, {
+        context: async ({ req }) => ({ locale: req?.headers?.locale || "en-US" }),
+    })
+  );
+
+  app.use(express.static(path.join(__dirname, "../../client", "build")));
+  app.use(express.static("public"));
+
+  app.get("/rest", (req, res) => {
+    res.json({ data: "rest" });
+  });
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../client", "build", "index.html"));
+  });
+
+  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+}
+
+startApolloServer(typeDefs, resolvers);
