@@ -13,10 +13,11 @@ import {
 } from "@apollo/client";
 import { AppContext } from "./providers/context";
 import I18nProvider from "./providers/i18n";
+import { GQL_SERVER_URL } from "./constants";
 
 const App = () => {
   const { state } = useContext(AppContext);
-  const httpLink = new HttpLink({ uri: "http://localhost:4000/graphql/" });
+  const httpLink = new HttpLink({ uri: GQL_SERVER_URL });
   const localeMiddleware = new ApolloLink((operation, forward) => {
     const customHeaders = operation.getContext().hasOwnProperty("headers")
       ? operation.getContext().headers
