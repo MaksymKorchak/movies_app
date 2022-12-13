@@ -40,13 +40,14 @@ const Navigation = () => {
           to="settings"
           sx={{ color: "inherit" }}
           underline="none"
+		  onClick={() => setDrawerOpen(false)}
         >
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <SettingsIcon />
               </ListItemIcon>
-              <FormattedMessage id="navigation.settings"/>
+              <FormattedMessage id="navigation.settings.headline"/>
             </ListItemButton>
           </ListItem>
         </Link>
@@ -97,7 +98,8 @@ const Navigation = () => {
               component={RouterLink}
               to="settings"
               sx={{ my: 2, color: "white", display: { xs: "none", lg: "flex" } }}>
-              <FormattedMessage id="navigation.settings"/>
+				<SettingsIcon />
+              	<FormattedMessage id="navigation.settings.headline"/>
             </Button>
           </Box>
         </Toolbar>

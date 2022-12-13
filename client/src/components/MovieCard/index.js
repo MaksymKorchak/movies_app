@@ -8,6 +8,7 @@ import {
   styled
 } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import dummyImage from '../../assests/images/movie_dummy_image.jpeg'
 
 const CardInfo = styled(CardContent)(({ theme }) => ({
   "&:last-child": {
@@ -40,7 +41,7 @@ const MovieCard = ({ movie, onCardSelect, isPreviewMode }) => {
         <CardMedia
             component="img" 
             height="250" 
-            image={movie.image} 
+            image={movie.image || dummyImage} 
             alt={movie.title} />
 
         {!isPreviewMode && (

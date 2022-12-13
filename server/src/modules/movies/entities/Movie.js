@@ -6,12 +6,12 @@ class Movie {
         this.movie = movie;
         this.id = movie.id;
         this.title = movie.title;
-        this.posterPath = `${IMAGE_BASE_PATH}${movie.poster_path}`;
+        this.posterPath = movie.poster_path ? `${IMAGE_BASE_PATH}${movie.poster_path}` : null;
         this.adult = movie.adult;
         this.overview = movie.overview;
         this.originalTitle = movie.original_title;
         this.originalLanguage = movie.original_language;
-        this.backdropPath = `${IMAGE_BASE_PATH}${movie.backdrop_path}`;
+        this.backdropPath = movie.backdrop_path ? `${IMAGE_BASE_PATH}${movie.backdrop_path}` : null;
         this.popularity = movie.popularity;
         this.voteCount = movie.vote_count;
         this.video = movie.video;

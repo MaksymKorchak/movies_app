@@ -5,6 +5,7 @@ import SelectedMoviesSection from "./SelectedMoviesSection";
 import SelectedMoviesForm from "./SelectedMoviesForm";
 import ConfirmModal from "./ConfirmModal";
 import SocialShare from "./SocialShare";
+import Filters from "./Filters";
 
 export  {
     Navigation,
@@ -13,5 +14,6 @@ export  {
     SelectedMoviesSection,
     SelectedMoviesForm,
     ConfirmModal,
-    SocialShare
+    SocialShare,
+    Filters
 }

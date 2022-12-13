@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import CardMenu from "../CardMenu";
 import { FormattedMessage } from "react-intl";
+import dummyImage from '../../assests/images/movie_dummy_image.jpeg';
 
 const MovieCardSelected = ({ movie, onCardDelete }) => {
   return (
@@ -17,7 +18,7 @@ const MovieCardSelected = ({ movie, onCardDelete }) => {
       	<CardMedia
 			component="img"
 			sx={{ width: 100 }}
-			image={movie.image}
+			image={movie.image || dummyImage}
 			alt={movie.title}/>
         <Box
 			sx={{
