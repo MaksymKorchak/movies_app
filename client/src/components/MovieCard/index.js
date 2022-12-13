@@ -65,7 +65,7 @@ const MovieCard = ({ movie, onCardSelect, isPreviewMode }) => {
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
-        image: PropTypes.string.isRequired,
+        image: PropTypes.string,
         title: PropTypes.string.isRequired,
         releaseDate: PropTypes.string
     }).isRequired,

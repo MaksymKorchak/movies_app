@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Grid, Box, Paper, Pagination, Stack } from "@mui/material";
 import { MovieCard, SelectedMoviesSection, Filters } from "../../components";
 import { useQuery } from "@apollo/client";
@@ -19,7 +18,7 @@ const Home = () => {
   const pagesCount = data?.movies?.totalPages <= 500 ? data?.movies?.totalPages : 500;
 
   const onSubmit = (data) => {
-    setFilter(data);
+    setFilter(data)
   }
 
   if (error) return <FormattedMessage id="something_wrong"/>;

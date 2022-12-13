@@ -6,7 +6,7 @@ export const useFilters = () => {
         page: 1,
         sortBy: 'popularity',
         sortDirection: SORT_DIRECTION.DESC,
-        includeAdult: true
+        includeAdult: false
     });
 
     const setPage = useCallback((page) => {
@@ -20,8 +20,8 @@ export const useFilters = () => {
         setFilterFields({
             ...filter,
             ...filterFields,
-            year: +filterFields.year,
-            primaryReleaseYear: +filterFields.primaryReleaseYear
+            year: +filterFields.year || null,
+            primaryReleaseYear: +filterFields.primaryReleaseYear || null 
         })
     }, [filter]);
 

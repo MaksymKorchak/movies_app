@@ -11,7 +11,7 @@ import {
 	SortDirectionField
  } from "./components";
  import { GENRES_QUERY } from "./queries";
- import { FormattedMessage } from "react-intl";
+ import { FormattedMessage } from "react-intl"
 
 const Filters = ({ onSubmit, initialValues }) => {
 	const {loading, error, data} = useQuery(GENRES_QUERY);
@@ -25,7 +25,7 @@ const Filters = ({ onSubmit, initialValues }) => {
       <Form
         onSubmit={onSubmit}
         initialValues={initialValues}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
+        render={({ handleSubmit, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
             <Box
               sx={{
@@ -46,8 +46,8 @@ const Filters = ({ onSubmit, initialValues }) => {
 				<SortDirectionField/>
               </Box>
             </Box>
-			<Box sx={{pt: 1}}>
-			  	<SubmitField/>
+			<Box sx={{pt: 1, display: "flex", gap: "20px",  flexWrap: "wrap"}}>
+				<SubmitField/>
 			</Box>
           </form>
         )}
