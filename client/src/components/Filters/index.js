@@ -8,24 +8,25 @@ import {
 	AdultField, 
 	SubmitField, 
 	SortField,
-	SortDirectionField
+	SortDirectionField,
+  ResetField
  } from "./components";
  import { GENRES_QUERY } from "./queries";
  import { FormattedMessage } from "react-intl"
 
-const Filters = ({ onSubmit, initialValues }) => {
+const Filters = ({ onSubmit, initialValues, resetFilter }) => {
 	const {loading, error, data} = useQuery(GENRES_QUERY);
 
 	if(loading){
 		return <FormattedMessage id="loading"/>
-	}
+	};
 
   return (
     <>
       <Form
         onSubmit={onSubmit}
         initialValues={initialValues}
-        render={({ handleSubmit, submitting, pristine, values }) => (
+        render={({ handleSubmit, form }) => (
           <form onSubmit={handleSubmit}>
             <Box
               sx={{
@@ -41,13 +42,14 @@ const Filters = ({ onSubmit, initialValues }) => {
                 <GenreField data = {data}/>
 				<AdultField/>
               </Box>
-              <Box sx={{display: 'flex', alignItems: 'center'}}>
+              <Box sx={{display: 'flex', alignItems: 'center', gap: '20px'}}>
                 <SortField/>
 				<SortDirectionField/>
               </Box>
             </Box>
 			<Box sx={{pt: 1, display: "flex", gap: "20px",  flexWrap: "wrap"}}>
 				<SubmitField/>
+				<ResetField onClick={() =>{form.reset(); resetFilter()}}/>
 			</Box>
           </form>
         )}

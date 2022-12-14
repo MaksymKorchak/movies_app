@@ -12,7 +12,7 @@ export const GenreField = ({ data }) => {
             render={({ input }) => (
                 <FormattedMessage id="filters.genre">
                     {placeholder =>
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <FormControl sx={{ m: 0, minWidth: 120 }} size="small">
                             <InputLabel id="demo-simple-select-label">{placeholder}</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"

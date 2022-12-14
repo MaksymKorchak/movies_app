@@ -9,6 +9,7 @@ export const ReleaseYearField = () => {
         render={({ input }) => (
         <TextField
             type="number"
+            size="small"
             label={<FormattedMessage id="filters.release_year"/>} 
             minvalue={1800}
             maxvalue={2030}

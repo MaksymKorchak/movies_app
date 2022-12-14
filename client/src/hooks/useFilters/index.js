@@ -25,9 +25,18 @@ export const useFilters = () => {
         })
     }, [filter]);
 
+    const resetFilter = useCallback(() => {
+        setFilterFields({
+            ...filter,
+            year:  null,
+            primaryReleaseYear: null 
+        })
+    }, []);
+
     return {
         filter,
         setPage,
-        setFilter
+        setFilter,
+        resetFilter
     }
 }

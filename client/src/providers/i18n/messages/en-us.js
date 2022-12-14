@@ -23,6 +23,7 @@ export default {
       release_year: "Release year",
       genre: "Genre",
       submit: "Submit",
+      reset: "Reset Filters",
       sort: {
         popularity: "Popularity",
         release_date: "Release date",

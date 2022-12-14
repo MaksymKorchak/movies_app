@@ -7,7 +7,7 @@ import { FormattedMessage } from "react-intl";
 import { useFilters } from "../../hooks/useFilters";
 
 const Home = () => {
-  const { filter, setPage, setFilter } = useFilters();
+  const { filter, setPage, setFilter, resetFilter } = useFilters();
   const {loading, error, data} = useQuery(MOVIES_QUERY, { variables: { filter }});
   const { selectedMovies, selectMovie, deleteMovie } = useMovies();
 
@@ -28,7 +28,7 @@ const Home = () => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Paper sx={{padding: 2}}>
-            <Filters onSubmit={onSubmit} initialValues={filter}/>
+            <Filters onSubmit={onSubmit} initialValues={filter} resetFilter={resetFilter}/>
           </Paper>
         </Grid>
         <Grid item xs={12} md={8}>

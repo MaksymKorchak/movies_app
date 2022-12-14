@@ -24,6 +24,7 @@ export default {
       release_year: "Рік випуску",
       genre: "Жанр",
       submit: "Пошук",
+      reset: "Скинути фільтри",
       sort: {
         popularity: "Популярність",
         release_date: "Дата випуску",

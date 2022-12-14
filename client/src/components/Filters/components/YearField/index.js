@@ -9,6 +9,7 @@ export const YearField = () => {
       render={({ input }) => (
         <TextField
             type="number"
+            size="small"
             label={<FormattedMessage id="filters.year"/>} 
             minvalue={1800}
             maxvalue={2030}

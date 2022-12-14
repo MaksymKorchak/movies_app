@@ -5,6 +5,7 @@ import { AdultField } from "./AdultField";
 import { SubmitField } from "./SubmitField";
 import { SortField } from "./SortField";
 import { SortDirectionField } from "./SortDirectionField";
+import { ResetField } from "./ResetField";
 
 export {
     YearField,
@@ -13,5 +14,6 @@ export {
     AdultField,
     SubmitField,
     SortField,
-    SortDirectionField
+    SortDirectionField,
+    ResetField
 }
